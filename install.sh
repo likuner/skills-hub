@@ -30,7 +30,7 @@ link_skill() { # $1=skill 源目录（绝对路径） $2=目标目录
   if [ -L "$link" ]; then
     rm "$link" # 指向别处或已失效的链接，安全替换
   elif [ -e "$link" ]; then
-    echo "  跳过 $link：已存在非符号链接内容，请手动处理" >&2
+    echo "  跳过 ${link}：已存在非符号链接内容，请手动处理" >&2
     skipped=$((skipped + 1))
     return 0
   fi
@@ -47,7 +47,7 @@ prune_dead() { # 清理目标目录中指向本仓库但已失效的链接（对
     src="$(readlink "$link")"
     case "$src" in
       "$SKILLS_DIR"/*)
-        [ -e "$link" ] || { rm "$link"; echo "  清理失效链接 $link（原指向 $src）"; }
+        [ -e "$link" ] || { rm "$link"; echo "  清理失效链接 ${link}（原指向 ${src}）"; }
         ;;
     esac
   done
