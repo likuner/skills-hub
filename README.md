@@ -8,6 +8,7 @@
 skills-hub/
 ├── README.md          # 本文件
 ├── install.sh         # 分发脚本：把 skills/ 链接到各平台目录（幂等，可重复运行）
+├── uninstall.sh       # 卸载脚本：移除所有分发链接（幂等，不影响其他来源的 skill）
 ├── template/          # 新 skill 模板
 └── skills/            # 自研 skill 源头（唯一需要编辑的地方）
     ├── agent-fullstack/
@@ -56,6 +57,14 @@ skills-hub/
 git clone <本仓库地址> ~/Documents/skills-hub
 cd ~/Documents/skills-hub && bash install.sh
 ```
+
+## 卸载
+
+```bash
+cd ~/Documents/skills-hub && bash uninstall.sh
+```
+
+只删除指向本仓库 `skills/` 的符号链接（含已失效的），不会动其他来源的 skill（如 dingtalk 系列），也不会删除仓库本体；如需彻底移除，卸载后再手动删除仓库目录即可。
 
 ## 修改 / 删除 skill
 
